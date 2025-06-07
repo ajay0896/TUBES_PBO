@@ -17,6 +17,7 @@ import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -304,6 +305,12 @@ public class Produk extends javax.swing.JInternalFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
+
+        // Menambahkan filter untuk file gambar
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "Image Files", "jpg", "jpeg", "png", "gif", "bmp");
+        fileChooser.setFileFilter(filter);
+
         int result = fileChooser.showOpenDialog(this);
 
         if (result == JFileChooser.APPROVE_OPTION) {
