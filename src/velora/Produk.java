@@ -364,6 +364,7 @@ public class Produk extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         createProduct();
+        bersih();
         tampilTabel();
     }//GEN-LAST:event_jButton1ActionPerformed
 
