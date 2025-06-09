@@ -19,6 +19,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -294,9 +297,9 @@ public class Produk extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(578, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
@@ -601,6 +604,9 @@ public class Produk extends javax.swing.JInternalFrame {
             //4. eksekusi query
             ResultSet r = s.executeQuery(query);
             //5. Looping
+            
+             NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+            
             while (r.next()) {
                 tb.addRow(new Object[]{
                     count++,
@@ -609,7 +615,7 @@ public class Produk extends javax.swing.JInternalFrame {
                     r.getString("function"),
                     r.getString("product_description"),
                     r.getString("skin_type"),
-                    r.getInt("product_price"), // Pastikan ini sesuai dengan tipe kolom
+                    formatRupiah.format(r.getInt("product_price")), // Memformat harga/ Pastikan ini sesuai dengan tipe kolom
                     r.getString("product_image"),
                     r.getString("recommendation_links")
                 });
