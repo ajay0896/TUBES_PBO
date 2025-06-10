@@ -46,6 +46,11 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 204));
 
         email.setBackground(new java.awt.Color(238, 151, 191));
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
 
         pass.setBackground(new java.awt.Color(238, 151, 191));
 
@@ -162,6 +167,10 @@ public class Login extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1KeyPressed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
 
     /**
      * @param args the command line arguments

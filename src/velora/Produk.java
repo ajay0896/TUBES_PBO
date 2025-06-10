@@ -395,18 +395,7 @@ public class Produk extends javax.swing.JInternalFrame {
             return;
         }
 
-        String imagePath = pathGambar.getText();
-
-        byte[] imageBytes = null;
-        if (selectedImagePath != null && !selectedImagePath.isEmpty()) {
-            try {
-                File imageFile = new File(selectedImagePath);
-                imageBytes = Files.readAllBytes(imageFile.toPath());
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, "Gagal Memuat gambar: " + e.getMessage());
-                return;
-            }
-        }
+//   
 
         try {
             String sql = "INSERT INTO products (product_name, function, product_description, skin_type, product_price, product_image, recommendation_links) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -525,7 +514,7 @@ public class Produk extends javax.swing.JInternalFrame {
             int count = 1;
 
             //1. query
-            String query = "SELECT * FROM products";
+            String query = "SELECT * FROM products ";
             //2. oneksi
             Connection Vconn = (Connection) Koneksi.konfigDB();
             //3 kirim parameter Java ke Sql
@@ -534,7 +523,7 @@ public class Produk extends javax.swing.JInternalFrame {
             ResultSet r = s.executeQuery(query);
             //5. Looping
             
-             NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+            NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(new Locale("usd", "USD"));
             
             while (r.next()) {
                 tb.addRow(new Object[]{

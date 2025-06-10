@@ -4,7 +4,18 @@
  */
 package velora;
 
+import java.awt.Image;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.NumberFormat;
+import java.util.Locale;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +28,7 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
+        tampilTabel();
     }
 
     /**
@@ -29,10 +41,34 @@ public class Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelProduk = new javax.swing.JTable();
+        link = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        deskripsi = new javax.swing.JTextArea();
+        jButton6 = new javax.swing.JButton();
+        pathGambar = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        skin_type = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        harga = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        fungsi = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        namaProduk = new javax.swing.JTextField();
+        idProduk = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        labelGambar = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ADMIN VELORA");
@@ -41,58 +77,360 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(246, 246, 232));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tabelProduk.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "NO", "ID", "NAMA", "FUNGSI", "DESKRIPSI", "TIPE WAJAH", "HARGA", "FOTO", "LINK"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Byte.class, java.lang.String.class
+            };
 
-        jMenu1.setText("Menu");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem1.setText("Produk");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
-        jMenu1.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Logout");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelProduk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+                tabelProdukMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jScrollPane2.setViewportView(tabelProduk);
 
-        setJMenuBar(jMenuBar1);
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 763, 240));
+
+        link.setBackground(new java.awt.Color(238, 151, 191));
+        jPanel1.add(link, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 219, 234, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Link");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 218, -1, -1));
+
+        deskripsi.setBackground(new java.awt.Color(238, 151, 191));
+        deskripsi.setColumns(20);
+        deskripsi.setRows(5);
+        jScrollPane1.setViewportView(deskripsi);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 259, 230, -1));
+
+        jButton6.setBackground(new java.awt.Color(151, 169, 205));
+        jButton6.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(0, 0, 0));
+        jButton6.setText("Pilih Foto");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 297, 173, -1));
+
+        pathGambar.setBackground(new java.awt.Color(238, 151, 191));
+        jPanel1.add(pathGambar, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 257, 173, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Deskripsi");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 259, -1, 20));
+
+        skin_type.setBackground(new java.awt.Color(238, 151, 191));
+        jPanel1.add(skin_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 184, 234, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Skin Type");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 183, -1, -1));
+
+        harga.setBackground(new java.awt.Color(238, 151, 191));
+        jPanel1.add(harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 149, 234, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Harga");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 148, -1, -1));
+
+        fungsi.setBackground(new java.awt.Color(238, 151, 191));
+        jPanel1.add(fungsi, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 108, 234, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Fungsi");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 107, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Nama");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 66, -1, -1));
+
+        namaProduk.setBackground(new java.awt.Color(238, 151, 191));
+        jPanel1.add(namaProduk, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 67, 234, -1));
+
+        idProduk.setEditable(false);
+        idProduk.setBackground(new java.awt.Color(240, 191, 213));
+        idProduk.setDisabledTextColor(new java.awt.Color(239, 192, 214));
+        jPanel1.add(idProduk, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 24, 92, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Id");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 23, -1, -1));
+        jPanel1.add(labelGambar, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 110, 164, 117));
+
+        jButton1.setBackground(new java.awt.Color(151, 169, 205));
+        jButton1.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Tambah");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 22, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(151, 169, 205));
+        jButton2.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setText("Bersih");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 22, 84, -1));
+
+        jButton4.setBackground(new java.awt.Color(151, 169, 205));
+        jButton4.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(0, 0, 0));
+        jButton4.setText("Hapus");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 66, 84, -1));
+
+        jButton3.setBackground(new java.awt.Color(151, 169, 205));
+        jButton3.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 0, 0));
+        jButton3.setText("Ubah");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 66, 84, -1));
+
+        jPanel2.setBackground(new java.awt.Color(151, 169, 205));
+
+        jButton5.setBackground(new java.awt.Color(238, 151, 191));
+        jButton5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(0, 0, 0));
+        jButton5.setText("LOGOUT");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("HALO ADMIN ");
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/velora/asset/230.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel8)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addComponent(jButton5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(139, 139, 139))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void tabelProdukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelProdukMouseClicked
         // TODO add your handling code here:
-        Produk HP = new Produk();
-        jPanel1.add(HP);
-        HP.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        int baris = tabelProduk.rowAtPoint(evt.getPoint());
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        String id = tabelProduk.getValueAt(baris, 1).toString();
+        idProduk.setText(id);
+
+        String productName = tabelProduk.getValueAt(baris, 2).toString();
+        namaProduk.setText(productName);
+
+        String function = tabelProduk.getValueAt(baris, 3).toString();
+        fungsi.setText(function);
+
+        String productDescription = tabelProduk.getValueAt(baris, 4).toString();
+        deskripsi.setText(productDescription);
+
+        String price = tabelProduk.getValueAt(baris, 6).toString();
+        harga.setText(price);
+
+        String skinType = tabelProduk.getValueAt(baris, 5).toString();
+        skin_type.setText(skinType);
+
+        String imagePath = tabelProduk.getValueAt(baris, 7).toString(); // Indeks 7 untuk image path
+        pathGambar.setText(imagePath);
+
+        String recommendationLink = tabelProduk.getValueAt(baris, 8).toString(); // Indeks 8 untuk rekomendasi link
+        link.setText(recommendationLink);
+
+        if (imagePath != null && !imagePath.isEmpty()) {
+            try {
+                File imageFile = new File(imagePath);
+                ImageIcon imageIcon = new ImageIcon(imageFile.getAbsolutePath());
+
+                // Ambil ukuran label
+                int labelWidth = labelGambar.getWidth();
+                int labelHeight = labelGambar.getHeight();
+
+                // Ambil ukuran gambar asli
+                int imageWidth = imageIcon.getIconWidth();
+                int imageHeight = imageIcon.getIconHeight();
+
+                // Hitung skala untuk memperkecil gambar agar sesuai dengan label
+                double scaleX = (double) labelWidth / imageWidth;
+                double scaleY = (double) labelHeight / imageHeight;
+                double scale = Math.min(scaleX, scaleY); // Ambil skala terkecil
+
+                // Ubah ukuran gambar sesuai skala
+                Image scaledImage = imageIcon.getImage().getScaledInstance(
+                        (int) (scale * imageWidth),
+                        (int) (scale * imageHeight),
+                        Image.SCALE_SMOOTH
+                );
+
+                labelGambar.setIcon(new ImageIcon(scaledImage)); // Menampilkan gambar skala
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Failed to load image: " + e.getMessage());
+            }
+        }
+
+    }//GEN-LAST:event_tabelProdukMouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+
+        // Menambahkan filter untuk file gambar
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "Image Files", "jpg", "jpeg", "png", "gif", "bmp");
+        fileChooser.setFileFilter(filter);
+
+        int result = fileChooser.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            String fullPath = selectedFile.getAbsolutePath(); // Mengambil path lengkap
+            pathGambar.setText(fullPath); // Menyimpan path lengkap ke JTextField
+
+            try {
+                // Load the image to display in the label
+                ImageIcon imageIcon = new ImageIcon(fullPath);
+                int labelWidth = labelGambar.getWidth();
+                int labelHeight = labelGambar.getHeight();
+
+                // Resize the image to fit the label
+                int imageWidth = imageIcon.getIconWidth();
+                int imageHeight = imageIcon.getIconHeight();
+                double scaleX = (double) labelWidth / imageWidth;
+                double scaleY = (double) labelHeight / imageHeight;
+                double scale = Math.min(scaleX, scaleY);
+
+                Image scaledImage = imageIcon.getImage().getScaledInstance(
+                        (int) (scale * imageWidth),
+                        (int) (scale * imageHeight),
+                        Image.SCALE_SMOOTH
+                );
+
+                labelGambar.setIcon(new ImageIcon(scaledImage));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Failed to load image: " + ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        createProduct();
+        bersih();
+        tampilTabel();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        bersih();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        deleteProduct();
+        tampilTabel();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        updateProduct();
+        tampilTabel();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
         int option = JOptionPane.showConfirmDialog(null, "Anda yakin akan logout?", "Perhatian", JOptionPane.YES_NO_OPTION);
         if (option == 0) {
@@ -100,8 +438,205 @@ public class Dashboard extends javax.swing.JFrame {
             a.setVisible(true);
             this.setVisible(false);
         }
-    }//GEN-LAST:event_jMenu2MouseClicked
+    }//GEN-LAST:event_jButton5MouseClicked
 
+    
+       private String selectedImagePath;
+
+    private void createProduct() {
+        String productName = namaProduk.getText();
+        String productDescription = deskripsi.getText();
+        String recommendationLink = link.getText();
+        String price = harga.getText();
+        String skinType = skin_type.getText();
+        String function = fungsi.getText();
+
+        if (productName.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Isi nama produk dulu");
+            return;
+        } else if (function.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Isi fungsi produk dulu");
+            return;
+        } else if (price.isEmpty() || !price.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Isi harga produk dengan angka yang valid");
+            return;
+        } else if (skinType.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Isi jenis kulit produk dulu");
+            return;
+        } else if (recommendationLink.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Isi link produk dulu");
+            return;
+        } else if (productDescription.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Isi deskripsi produk dulu");
+            return;
+        } else if (pathGambar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Masukkan gambar terlebih dahulu");
+            return;
+        }
+
+//   
+
+        try {
+            String sql = "INSERT INTO products (product_name, function, product_description, skin_type, product_price, product_image, recommendation_links) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            Connection Vconn = Koneksi.konfigDB();
+            java.sql.PreparedStatement ps = Vconn.prepareStatement(sql);
+
+            ps.setString(1, productName);
+            ps.setString(2, function);
+            ps.setString(3, productDescription);
+            ps.setString(4, skinType);
+            ps.setInt(5, Integer.valueOf(price));
+            ps.setString(6, pathGambar.getText());
+            ps.setString(7, recommendationLink);
+
+            ps.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Produk berhasil ditambahkan");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Gagal tambah produk: " + e.getMessage());
+        }
+    }
+
+    private void updateProduct() {
+        String id = idProduk.getText();
+        String productName = namaProduk.getText();
+        String productDescription = deskripsi.getText();
+        String recommendationLink = link.getText();
+        String price = harga.getText();
+        String skinType = skin_type.getText();
+        String function = fungsi.getText();
+        String imagePath = pathGambar.getText();
+
+        if (productName.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Isi nama produk dulu");
+            return;
+        } else if (function.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Isi fungsi produk dulu");
+            return;
+        } else if (price.isEmpty() || !price.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Isi harga produk dengan angka yang valid");
+            return;
+        } else if (skinType.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Isi jenis kulit produk dulu");
+            return;
+        } else if (recommendationLink.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Isi link produk dulu");
+            return;
+        } else if (productDescription.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Isi deskripsi produk dulu");
+            return;
+        } else if (pathGambar.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Masukkan gambar terlebih dahulu");
+            return;
+        } else {
+
+            try {
+                String sql = "UPDATE products SET product_name=?, function=?, product_description=?, skin_type=?, product_price=?, product_image=?, recommendation_links=? WHERE id=?";
+
+                Connection Vconn = Koneksi.konfigDB(); // Assuming you have a DB connection
+                java.sql.PreparedStatement ps = Vconn.prepareStatement(sql);
+
+                ps.setString(1, productName);
+                ps.setString(2, function);
+                ps.setString(3, productDescription);
+                ps.setString(4, skinType);
+                ps.setInt(5, Integer.valueOf(price));
+                ps.setString(6, imagePath);
+                ps.setString(7, recommendationLink);
+                ps.setString(8, id); // ID untuk WHERE clause
+
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Produk berhasil di ubah");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "gagal ubah produk: " + e.getMessage());
+            }
+        }
+
+    }
+
+    private void deleteProduct() {
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this product?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            String id = idProduk.getText();
+
+            try {
+                String sql = "DELETE FROM products WHERE id=?";
+
+                Connection Vconn = Koneksi.konfigDB(); // Assuming you have a DB connection
+                java.sql.PreparedStatement ps = Vconn.prepareStatement(sql);
+                ps.setString(1, id); // ID untuk WHERE clause
+
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Produk berhasil di hapus");
+                tampilTabel(); // Refresh the table after deletion
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "gagal hapus produk: " + e.getMessage());
+            }
+        }
+    }
+
+    public void tampilTabel() {
+        DefaultTableModel tb = new DefaultTableModel();
+        tb.addColumn("NO");
+        tb.addColumn("ID");
+        tb.addColumn("NAMA");
+        tb.addColumn("FUNGSI");
+        tb.addColumn("DESKRIPSI");
+        tb.addColumn("SKIN TYPE");
+        tb.addColumn("HARGA");
+        tb.addColumn("FOTO");
+        tb.addColumn("LINK");
+
+        try {
+
+            int count = 1;
+
+            //1. query
+            String query = "SELECT * FROM products ";
+            //2. oneksi
+            Connection Vconn = (Connection) Koneksi.konfigDB();
+            //3 kirim parameter Java ke Sql
+            Statement s = Vconn.createStatement();
+            //4. eksekusi query
+            ResultSet r = s.executeQuery(query);
+            //5. Looping
+            
+            NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+            
+            while (r.next()) {
+                tb.addRow(new Object[]{
+                    count++,
+                    r.getString("id"), // Ambil berdasarkan nama kolom
+                    r.getString("product_name"),
+                    r.getString("function"),
+                    r.getString("product_description"),
+                    r.getString("skin_type"),
+                    formatRupiah.format(r.getInt("product_price")), // Memformat harga/ Pastikan ini sesuai dengan tipe kolom
+                    r.getString("product_image"),
+                    r.getString("recommendation_links")
+                });
+            }
+            tabelProduk.setModel(tb);
+
+        } catch (Exception ex) {
+            
+        }
+
+    }
+
+    private void bersih() {
+        idProduk.setText("");
+        namaProduk.setText("");
+        deskripsi.setText("");
+        fungsi.setText("");
+        harga.setText("");
+        link.setText("");
+        skin_type.setText("");
+        labelGambar.setIcon(null);
+        pathGambar.setText("");
+
+    }
     /**
      * @param args the command line arguments
      */
@@ -138,10 +673,34 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JTextArea deskripsi;
+    private javax.swing.JTextField fungsi;
+    private javax.swing.JTextField harga;
+    private javax.swing.JTextField idProduk;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelGambar;
+    private javax.swing.JTextField link;
+    private javax.swing.JTextField namaProduk;
+    private javax.swing.JTextField pathGambar;
+    private javax.swing.JTextField skin_type;
+    private javax.swing.JTable tabelProduk;
     // End of variables declaration//GEN-END:variables
 }
