@@ -59,8 +59,8 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         namaProduk = new javax.swing.JTextField();
         idProduk = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         labelGambar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -69,6 +69,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ADMIN VELORA");
@@ -85,7 +86,7 @@ public class Dashboard extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "NO", "ID", "NAMA", "FUNGSI", "DESKRIPSI", "TIPE WAJAH", "HARGA", "FOTO", "LINK"
+                "NO", "ID", "NAMA", "FUNGSI", "DESKRIPSI", "TIPE KULIT", "HARGA", "FOTO", "LINK"
             }
         ) {
             Class[] types = new Class [] {
@@ -115,6 +116,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         deskripsi.setBackground(new java.awt.Color(238, 151, 191));
         deskripsi.setColumns(20);
+        deskripsi.setLineWrap(true);
         deskripsi.setRows(5);
         jScrollPane1.setViewportView(deskripsi);
 
@@ -144,7 +146,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Skin Type");
+        jLabel6.setText("Tipe kulit");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 183, -1, -1));
 
         harga.setBackground(new java.awt.Color(238, 151, 191));
@@ -176,11 +178,15 @@ public class Dashboard extends javax.swing.JFrame {
         idProduk.setDisabledTextColor(new java.awt.Color(239, 192, 214));
         jPanel1.add(idProduk, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 24, 92, -1));
 
+        labelGambar.setBackground(new java.awt.Color(153, 153, 153));
+        labelGambar.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(labelGambar, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 110, 164, 117));
+
+        jLabel1.setBackground(new java.awt.Color(102, 255, 102));
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Id");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 23, -1, -1));
-        jPanel1.add(labelGambar, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 110, 164, 117));
 
         jButton1.setBackground(new java.awt.Color(151, 169, 205));
         jButton1.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
@@ -249,6 +255,21 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/velora/asset/230.png"))); // NOI18N
 
+        jButton7.setBackground(new java.awt.Color(238, 151, 191));
+        jButton7.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(0, 0, 0));
+        jButton7.setText("Lihat Feedback");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -263,8 +284,13 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(67, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jButton5)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(jButton5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jButton7)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -274,7 +300,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addGap(18, 18, 18)
                 .addComponent(jButton5)
                 .addGap(139, 139, 139))
         );
@@ -440,8 +468,17 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton5MouseClicked
 
-    
-       private String selectedImagePath;
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        View_feedback vf = new View_feedback();
+        vf.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private String selectedImagePath;
 
     private void createProduct() {
         String productName = namaProduk.getText();
@@ -475,7 +512,6 @@ public class Dashboard extends javax.swing.JFrame {
         }
 
 //   
-
         try {
             String sql = "INSERT INTO products (product_name, function, product_description, skin_type, product_price, product_image, recommendation_links) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -534,7 +570,7 @@ public class Dashboard extends javax.swing.JFrame {
             try {
                 String sql = "UPDATE products SET product_name=?, function=?, product_description=?, skin_type=?, product_price=?, product_image=?, recommendation_links=? WHERE id=?";
 
-                Connection Vconn = Koneksi.konfigDB(); // Assuming you have a DB connection
+                Connection Vconn = Koneksi.konfigDB(); 
                 java.sql.PreparedStatement ps = Vconn.prepareStatement(sql);
 
                 ps.setString(1, productName);
@@ -544,7 +580,7 @@ public class Dashboard extends javax.swing.JFrame {
                 ps.setInt(5, Integer.valueOf(price));
                 ps.setString(6, imagePath);
                 ps.setString(7, recommendationLink);
-                ps.setString(8, id); // ID untuk WHERE clause
+                ps.setString(8, id); 
 
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Produk berhasil di ubah");
@@ -569,7 +605,7 @@ public class Dashboard extends javax.swing.JFrame {
 
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Produk berhasil di hapus");
-                tampilTabel(); // Refresh the table after deletion
+          
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "gagal hapus produk: " + e.getMessage());
             }
@@ -583,7 +619,7 @@ public class Dashboard extends javax.swing.JFrame {
         tb.addColumn("NAMA");
         tb.addColumn("FUNGSI");
         tb.addColumn("DESKRIPSI");
-        tb.addColumn("SKIN TYPE");
+        tb.addColumn("TIPE KULIT");
         tb.addColumn("HARGA");
         tb.addColumn("FOTO");
         tb.addColumn("LINK");
@@ -601,9 +637,9 @@ public class Dashboard extends javax.swing.JFrame {
             //4. eksekusi query
             ResultSet r = s.executeQuery(query);
             //5. Looping
-            
+
             NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
-            
+
             while (r.next()) {
                 tb.addRow(new Object[]{
                     count++,
@@ -620,7 +656,7 @@ public class Dashboard extends javax.swing.JFrame {
             tabelProduk.setModel(tb);
 
         } catch (Exception ex) {
-            
+
         }
 
     }
@@ -637,6 +673,7 @@ public class Dashboard extends javax.swing.JFrame {
         pathGambar.setText("");
 
     }
+
     /**
      * @param args the command line arguments
      */
@@ -683,6 +720,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
