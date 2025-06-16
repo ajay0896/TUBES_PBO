@@ -46,11 +46,6 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 204));
 
         email.setBackground(new java.awt.Color(238, 151, 191));
-        email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
-            }
-        });
 
         pass.setBackground(new java.awt.Color(238, 151, 191));
 
@@ -68,11 +63,6 @@ public class Login extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jButton1KeyPressed(evt);
             }
         });
 
@@ -159,18 +149,6 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            jButton1ActionPerformed(null); // Call the action performed method
-        }
-
-    }//GEN-LAST:event_jButton1KeyPressed
-
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
 
     /**
      * @param args the command line arguments
