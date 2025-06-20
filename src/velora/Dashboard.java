@@ -69,6 +69,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ADMIN VELORA");
@@ -231,7 +232,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(238, 151, 191));
         jButton5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 0, 0));
-        jButton5.setText("LOGOUT");
+        jButton5.setText("Lihat Feedback");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
@@ -249,6 +250,21 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/velora/asset/230.png"))); // NOI18N
 
+        jButton7.setBackground(new java.awt.Color(238, 151, 191));
+        jButton7.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(0, 0, 0));
+        jButton7.setText("LOGOUT");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -263,8 +279,13 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(67, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jButton5)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jButton5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jButton7)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -274,9 +295,11 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addGap(115, 115, 115)
                 .addComponent(jButton5)
-                .addGap(139, 139, 139))
+                .addGap(18, 18, 18)
+                .addComponent(jButton7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -431,17 +454,26 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        // TODO add your handling code here:
+        Feedback hf = new Feedback();
+        hf.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         int option = JOptionPane.showConfirmDialog(null, "Anda yakin akan logout?", "Perhatian", JOptionPane.YES_NO_OPTION);
         if (option == 0) {
             Login a = new Login();
             a.setVisible(true);
             this.setVisible(false);
         }
-    }//GEN-LAST:event_jButton5MouseClicked
+    }//GEN-LAST:event_jButton7MouseClicked
 
-    
-       private String selectedImagePath;
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private String selectedImagePath;
 
     private void createProduct() {
         String productName = namaProduk.getText();
@@ -475,7 +507,6 @@ public class Dashboard extends javax.swing.JFrame {
         }
 
 //   
-
         try {
             String sql = "INSERT INTO products (product_name, function, product_description, skin_type, product_price, product_image, recommendation_links) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -601,9 +632,9 @@ public class Dashboard extends javax.swing.JFrame {
             //4. eksekusi query
             ResultSet r = s.executeQuery(query);
             //5. Looping
-            
+
             NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
-            
+
             while (r.next()) {
                 tb.addRow(new Object[]{
                     count++,
@@ -620,7 +651,7 @@ public class Dashboard extends javax.swing.JFrame {
             tabelProduk.setModel(tb);
 
         } catch (Exception ex) {
-            
+
         }
 
     }
@@ -637,6 +668,7 @@ public class Dashboard extends javax.swing.JFrame {
         pathGambar.setText("");
 
     }
+
     /**
      * @param args the command line arguments
      */
@@ -683,6 +715,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
